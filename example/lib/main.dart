@@ -41,15 +41,64 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
-          child: FlexibleSlider.stable(
-            divisions: 10,
-            max: 10,
-            fractionDigits: 3,
-            direction: Direction.horizontal,
-            activeColor: Colors.pink,
-            onValueChanged: (value) {
-              print(value);
-            },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Horizontal with default orientation'),
+              const SizedBox(
+                height: 20,
+              ),
+              FlexibleSlider(
+                divisions: 4,
+                onValueChanged: (value) {
+                  print(value);
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text('Horizontal with reversed orientation'),
+              const SizedBox(
+                height: 20,
+              ),
+              FlexibleSlider(
+                divisions: 5,
+                position: Position.reversedPosition,
+                onValueChanged: (value) {
+                  print(value);
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text('Vertical with default orientation'),
+              const SizedBox(
+                height: 20,
+              ),
+              FlexibleSlider(
+                divisions: 5,
+                direction: Direction.vertical,
+                onValueChanged: (value) {
+                  print(value);
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text('Vertical with reversed orientation'),
+              const SizedBox(
+                height: 20,
+              ),
+              FlexibleSlider(
+                divisions: 5,
+                direction: Direction.vertical,
+                position: Position.reversedPosition,
+                fractionDigits: 6,
+                onValueChanged: (value) {
+                  print(value);
+                },
+              ),
+            ],
           ),
         ),
       ),

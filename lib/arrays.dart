@@ -3,8 +3,6 @@ enum Direction {
   vertical,
 }
 enum Position {
-  top,
-  bottom,
-  left,
-  right,
+  defaultPosition,
+  reversedPosition,
 }
