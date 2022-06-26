@@ -1,6 +1,8 @@
 # Flexible Slider
 A new easy way to create slider with editable textfield with realtime value changing .
 
+  <p align="center">  <img src="https://github.com/BenSalemOumaima/flexible_slider/blob/main/flexible_slider_example.jpg?raw=true" width= "200"/>  </p>
+  
 ## Features
 
 - Display slider with textfield
