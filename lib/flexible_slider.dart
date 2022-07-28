@@ -3,6 +3,7 @@ library flexible_slider;
 import 'package:flexible_slider/arrays.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FlexibleSlider extends StatefulWidget {
   /// Max value of the slider
   /// By Default [50.0]
@@ -54,6 +55,9 @@ class FlexibleSlider extends StatefulWidget {
   /// Required in all constructers
   final Function(double) onValueChanged;
 
+  final double? initialSliderValue;
+
+
   FlexibleSlider({
     Key? key,
     this.max = 50.0,
@@ -77,8 +81,13 @@ class FlexibleSlider extends StatefulWidget {
     this.direction = Direction.horizontal,
     this.position = Position.defaultPosition,
     this.divisions,
+    this.initialSliderValue,
     required this.onValueChanged,
-  }) : super(key: key);
+  }) : super(key: key){
+    if(initialSliderValue != null){
+      assert(initialSliderValue! >= min  && initialSliderValue! <= max );
+    }
+  }
 
   FlexibleSlider.primary({
     Key? key,
@@ -90,8 +99,12 @@ class FlexibleSlider extends StatefulWidget {
     this.direction = Direction.horizontal,
     this.position = Position.defaultPosition,
     this.divisions,
+    this.initialSliderValue,
     required this.onValueChanged,
   }) : super(key: key) {
+    if(initialSliderValue != null){
+      assert(initialSliderValue! >= min  && initialSliderValue! <= max );
+    }
     textDecoration = const InputDecoration(
       contentPadding: EdgeInsets.all(8),
       filled: true,
@@ -112,8 +125,17 @@ class FlexibleSlider extends StatefulWidget {
 }
 
 class _FlexibleSliderState extends State<FlexibleSlider> {
-  late double _currentSliderValue = widget.min;
+  late double _currentSliderValue = widget.initialSliderValue ?? widget.min;
   TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    textEditingController.text = _currentSliderValue.toStringAsFixed(
+      widget.fractionDigits,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Direction.horizontal == widget.direction
